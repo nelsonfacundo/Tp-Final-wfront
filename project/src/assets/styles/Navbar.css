@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:regular,bold,italic&subset=latin,latin-ext');
+
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    background-color: #CCFFC4;
+    font-size: 22px;
+    font-family: 'Truculenta', sans-serif;
+    
+}
+
+.navbar img {
+    width: 96px;
+    height: 96px;
+}
+
+
+
+
+.navbar-links {
+    display: flex;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    margin-right: auto; 
+}
+
+
+.navbar-links li a {
+    color: #212529;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    margin-top: 25px;
+}
+
+.navbar-session-user  {
+    display: flex;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.navbar-session-user  li a{
+    color: #212529;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+}
+
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column; /* Cambia a una disposición de columna en pantallas más pequeñas */
+        text-align: center; /* Centra el texto en pantallas más pequeñas */
+    }
+
+    .navbar-links {
+        margin-top: 10px; /* Ajusta el margen superior de los enlaces */
+    }
+
+    .navbar img {
+        margin-bottom: 10px; /* Ajusta el margen inferior de la imagen */
+    }
+
+    .navbar-links li,
+    .navbar-session-user li {
+        margin: 10px 0; /* Ajusta el margen superior e inferior de los elementos de la lista */
+    }
+
+    .navbar-links li a,
+    .navbar-session-user li a {
+        margin-top: 0; /* Elimina el margen superior en los enlaces */
+    }
+}
