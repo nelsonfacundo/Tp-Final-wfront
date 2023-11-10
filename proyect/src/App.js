@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Home from "./components/Home/home";
+import Home from "./components/home/Home";
 
 function App() {
   return (
