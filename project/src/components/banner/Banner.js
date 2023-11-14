@@ -5,9 +5,6 @@ import "../../assets/styles/banner.css";
 const Banner = () => {
   return (
     <div className="banner-container">
-      <div className="click">
-        <a href="/"> Click para ver mas</a>
-      </div>
       <img src={BannerImage} className="banner"></img>
     </div>
   );
