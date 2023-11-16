@@ -15,7 +15,7 @@ const Navbar = () => {
           <a href="/adopt">Adoptar</a>
         </li>
         <li>
-          <a href="/about">Poné en adopcións</a>
+          <a href="/about">Poné en adopción</a>
         </li>
         <li>
           <a href="/login">Sobre nosotros</a>
