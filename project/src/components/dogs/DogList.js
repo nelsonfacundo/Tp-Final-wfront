@@ -1,19 +1,19 @@
-import Dog from "./dogs";
+import Dog from "./dog";
 
 const DogList = (props) => {
   return (
     <ul>
-      {props.Dogs.map((Dog) => {
+      {props.Dog.map((dogs) => {
         return (
-          <dogs
-            id={Dog._id}
-            name={Dog.name}
-            age={Dog.age}
-            specie={Dog.sprecie}
-            race={Dog.race}
-            gender={Dog.gender}
-            description={Dog.description}
-            privince={Dog.privince}
+          <Dog
+            id={dogs._id}
+            name={dogs.name}
+            age={dogs.age}
+            specie={dogs.sprecie}
+            race={dogs.race}
+            gender={dogs.gender}
+            description={dogs.description}
+            province={dogs.province}
           />
         );
       })}

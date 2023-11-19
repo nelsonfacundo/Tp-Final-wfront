@@ -13,7 +13,7 @@ const Dog = (props) => {
             <h3>{props.race}</h3>
             <h3>{props.gender}</h3>
             <h3>{props.description}</h3>
-            <h3>{props.privince}</h3>
+            <h3>{props.province}</h3>
           </div>
         </Link>
       </div>
