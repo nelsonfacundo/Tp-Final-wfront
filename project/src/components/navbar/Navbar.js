@@ -1,6 +1,7 @@
 import React from "react";
 import "../../assets/styles/Navbar.css";
 import Logo from "../../assets/images/Logo.png";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
@@ -18,7 +19,7 @@ const Navbar = () => {
           <a href="/about">Poné en adopcións</a>
         </li>
         <li>
-          <a href="/login">Sobre nosotros</a>
+          <Link to={`/login`}>Inicio de sesión </Link>
         </li>
       </ul>
       <ul className="navbar-session-user">
