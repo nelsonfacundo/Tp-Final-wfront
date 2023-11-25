@@ -3,7 +3,7 @@ import Pet from "./Pet";
 
 const PetList = (props) => {
     return (
-        <div>
+        <div className="col-right">		
             {props.pets.map((pet) => (
                 <Pet key={pet._id} pet={pet} />
             ))}

@@ -1,14 +1,12 @@
 import Navbar from "../navbar/Navbar.js";
-import Banner from "../banner/Banner.js";
 import Footer from "../footer/Footer.js";
-import "../../assets/styles/Home.css";
+import "../../assets/styles/Pet.css";
 import PetList from "./PetList";
 import React, { useState, useEffect } from "react";
 
 const PetPage = (props) => {
 	const [pets, setPets] = useState([]);
-	const apiUrl =
-		"http://localhost:3001/api/pets/";
+	const apiUrl = "http://localhost:3001/api/pets/adoptables";
 
 	useEffect(() => {
 		const fetchPets = async () => {
@@ -32,9 +30,10 @@ const PetPage = (props) => {
 	return (
 		<div className="main">
 			<Navbar />
-			<Banner />
-			<div>
-				<h1>Pets</h1>
+			<div className="pet-container">
+				<div className="col-left">
+					<h1>Adoptá</h1>
+				</div>
 				<PetList pets={pets} />
 			</div>
 			<Footer />

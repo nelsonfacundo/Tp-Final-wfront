@@ -1,0 +1,25 @@
+@media screen and (max-width: 768px) {
+	.col-left,
+	.col-right {
+		flex: 1;
+	}
+}
+
+@media screen and (min-width: 768px) {
+	.pet-container {
+		display: flex;
+		padding: 0.5rem 1rem;
+	}
+	.col-left {
+		flex: 0 0 25%;
+	}
+	.col-right {
+		flex: 1;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+	}
+	.pet-list {
+		display: flex;
+	}
+}

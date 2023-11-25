@@ -15,9 +15,7 @@ const Navbar = () => {
         <li>
           <a href="/adopt">Adoptar</a>
         </li>
-        <li>
-          <a href="/about">Poné en adopción</a>
-        </li>
+
         <li>
           <Link to={`/login`}>Inicio de sesión </Link>
         </li>
