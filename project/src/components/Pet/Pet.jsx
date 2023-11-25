@@ -1,41 +1,37 @@
-import React from 'react';
+import React from "react";
 import "../../assets/styles/Pet.css";
 
 const PetCard = ({ pet }) => {
-  const {  name, specie, race, gender, age, description, province, status } = pet;
+	const { name, specie, race, gender, age, description, status } =
+		pet;
 
-  return (
-    <div className="petCard">
-      
-      <h3>{name}</h3>
+	return (
+		<div className="petCard">
+			<h3>{name}</h3>
 
-      <ul>
-        <li>
-          <strong>Specie:</strong> {specie}
-        </li>
-        <li>
-          <strong>Race:</strong> {race}
-        </li>
-        <li>
-          <strong>Gender:</strong> {gender}
-        </li>
-        <li>
-          <strong>Age:</strong> {age}
-        </li>
-      </ul>
+			<ul>
+				<li>
+					<strong>Especie:</strong> {specie}
+				</li>
+				<li>
+					<strong>Raza:</strong> {race}
+				</li>
+				<li>
+					<strong>Genero:</strong> {gender}
+				</li>
+				<li>
+					<strong>Edad:</strong> {age}
+				</li>
+			</ul>
 
-      <p>
-        <strong>Description:</strong> {description}
-      </p>
-      <p>
-        <strong>Province:</strong> {province}
-      </p>
-      <p>
-        <strong>Status:</strong> {status}
-      </p>
-
-    </div>
-  );
+			<p>
+				<strong>Descripcion:</strong> {description}
+			</p>
+			<p>
+				<strong>Estado de adopcion:</strong> {status}
+			</p>
+		</div>
+	);
 };
 
 export default PetCard;
