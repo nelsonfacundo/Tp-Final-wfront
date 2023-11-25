@@ -1,5 +1,5 @@
-import Navbar from "../navbar/Navbar.js";
-import Footer from "../footer/Footer.js";
+import Navbar from "../navbar/Navbar.jsx";
+import Footer from "../footer/Footer.jsx";
 import "../../assets/styles/Pet.css";
 import PetList from "./PetList";
 import React, { useState, useEffect } from "react";
