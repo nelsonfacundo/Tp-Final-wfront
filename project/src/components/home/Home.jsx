@@ -1,7 +1,7 @@
 import React from "react";
-import Navbar from "../navbar/Navbar.jsx";
-import Banner from "../banner/Banner.jsx";
-import Footer from "../footer/Footer.jsx";
+import Navbar from "../Navigation/Navbar.jsx";
+import Banner from "../Navigation/Banner.jsx";
+import Footer from "../Navigation/Footer.jsx";
 import "../../assets/styles/Home.css";
 import icono1 from "../../assets/images/Icono1.png";
 import icono2 from "../../assets/images/Icono2.png";

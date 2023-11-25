@@ -1,12 +1,15 @@
-import Navbar from "../navbar/Navbar.jsx";
-import Footer from "../footer/Footer.jsx";
+import Navbar from "../Navigation/Navbar.jsx";
+import Footer from "../Navigation/Footer.jsx";
 import "../../assets/styles/Pet.css";
 import PetList from "./PetList";
 import React, { useState, useEffect } from "react";
 
 const PetPage = (props) => {
 	const [pets, setPets] = useState([]);
-	const apiUrl = "http://localhost:3001/api/pets/adoptables";
+    const [pageSize, setPageSize] = useState(10);
+    const [currentPage, setCurrentPage] = useState(0);
+
+    const apiUrl = `http://localhost:3001/api/pets/adoptables?pageSize=${pageSize}&page=${currentPage}`;
 
 	useEffect(() => {
 		const fetchPets = async () => {
