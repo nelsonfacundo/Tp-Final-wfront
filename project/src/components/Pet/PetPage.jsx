@@ -25,7 +25,7 @@ const PetPage = (props) => {
 		};
 
 		fetchPets();
-	}, [pets]);
+	}, []);
 
 	return (
 		<div className="main">
