@@ -1,7 +1,8 @@
 import React from "react";
 import { getUserId } from "../../lib/Auth";
-
 import "../../assets/styles/Pet.css";
+import Constants from "../../lib/Constants.js";
+
 
 const PetCard = ({ pet, showAdoptButton }) => {
 	const { _id, name, specie, race, gender, age, description, status } = pet;
@@ -11,7 +12,7 @@ const PetCard = ({ pet, showAdoptButton }) => {
 
 		try {
 			const response = await fetch(
-				`http://localhost:3001/api/pets/add-adoption/${_id}`,
+				`${Constants.API_BASE_URL}:${Constants.API_PORT}/api/pets/add-adoption/${_id}`,
 				{
 					method: "POST",
 					headers: {

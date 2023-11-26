@@ -5,6 +5,7 @@ import "../../assets/styles/Pet.css";
 import PetList from "./PetList";
 import React, { useState, useEffect } from "react";
 import Constants from "../../lib/Constants.js";
+
 const PetPage = (props) => {
 	const [pets, setPets] = useState([]);
 	const [pageSize, setPageSize] = useState(3);
