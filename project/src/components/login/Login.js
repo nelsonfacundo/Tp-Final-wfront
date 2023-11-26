@@ -17,7 +17,7 @@ const Login = (props) => {
         if (!response.ok) {
           throw new Error("La solicitud no fue exitosa");
         }
-        //     navigate("/");
+        navigate("/");
       })
       .then((data) => {
         console.log("Respuesta del servidor:", data);
