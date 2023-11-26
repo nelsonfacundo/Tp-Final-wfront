@@ -12,16 +12,21 @@ const Login = (props) => {
       header: { "Content-Type": "application/json" },
       body: JSON.stringify(login),
     };
-    fetch("localhost:3000/login", requestOptions)
+    fetch("http://localhost:3000/api/users/login", requestOptions)
       .then((response) => {
         if (!response.ok) {
           throw new Error("La solicitud no fue exitosa");
         }
-        navigate("/");
+        //     navigate("/");
       })
       .then((data) => {
         console.log("Respuesta del servidor:", data);
+      })
+      .catch((err) => {
+        console.log(err);
       });
+    event.preventDefault();
+    console.log(login);
   };
 
   return (
