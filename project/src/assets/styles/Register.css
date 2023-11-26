@@ -1,14 +1,15 @@
 .form-container {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  max-width: 700px;
+  margin: 0 auto;
 }
 
 .form {
-  width: 80%;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   text-align: center;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
@@ -34,10 +35,11 @@
   box-sizing: border-box;
 }
 
-.form button {
+.form button,
+.home-button {
   background-color: rgb(83, 82, 82);
   color: rgb(250, 250, 250);
-  width: 17%;
+  width: 155px;
   height: 40px;
   border: none;
   border-radius: 30px;
@@ -48,10 +50,15 @@
   cursor: pointer;
 }
 
-.form button:hover {
+.form button:hover,
+.home-button:hover {
   background-color: rgb(116, 116, 117);
   border-width: 2.4px;
   border-style: solid;
+}
+
+.home-button {
+  margin-top: 25px;
 }
 
 .form button:active {
@@ -71,4 +78,16 @@ label {
   color: rgb(14, 90, 14);
   font-size: 18px;
   font-weight: bold;
+}
+
+.confirmation-window {
+  color: rgb(20, 109, 20);
+  font-size: 45px;
+  margin-top: 125px;
+  margin-bottom: 200px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
 }
