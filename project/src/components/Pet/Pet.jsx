@@ -8,7 +8,6 @@ const PetCard = ({ pet, showAdoptButton }) => {
 
 	const adoptar = async () => {
 		const userId = getUserId();
-
 		try {
 			const response = await fetch(
 				`${Constants.API_BASE_URL}:${Constants.API_PORT}/api/adoptions/add-adoption`,
@@ -57,9 +56,6 @@ const PetCard = ({ pet, showAdoptButton }) => {
 			</p>
 			<p>
 				<strong>Estado de adopcion:</strong> {status}
-			</p>
-			<p>
-				<strong>showAdoptButton:</strong> {showAdoptButton}
 			</p>
 			{showAdoptButton && <button onClick={() => adoptar(_id)}>Adoptar</button>}
 		</div>
