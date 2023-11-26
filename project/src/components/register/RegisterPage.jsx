@@ -8,6 +8,7 @@ import { useState } from 'react';
 const RegisterPage = (props) => {
   const navigate = useNavigate();
   const [solicitudEnviada, setSolicitudEnviada] = useState(false);
+  const [mostrarFormulario, setMostrarFormulario] = useState(true);
 
   const registerHandler = (event) => {
     event.preventDefault();
@@ -44,7 +45,8 @@ const RegisterPage = (props) => {
       .then((data) => {
         console.log('Respuesta del servidor:', data);
         setSolicitudEnviada(true);
-        navigate('/');
+        setMostrarFormulario(false);
+        //navigate('/');
       })
       .catch((error) => {
         console.error('Error en la solicitud:', error);
@@ -54,32 +56,39 @@ const RegisterPage = (props) => {
   return (
     <div>
       <Navbar />
-      {solicitudEnviada && (
-        <div>
-          <p>¡La solicitud se ha enviado con éxito!</p>
+
+      {mostrarFormulario && (
+        <form onSubmit={registerHandler} className='form'>
+          <h2>Creá tu cuenta</h2>
+          <label htmlFor='firstName'>Nombre</label>
+          <input type='text' name='firstName' /> <br />
+          <label htmlFor='lastName'>Apellido</label>
+          <input type='text' name='lastName' /> <br />
+          <label htmlFor='firstName'>Edad</label>
+          <input type='number' name='age' /> <br />
+          <label htmlFor='roll'>Función (seleccionar) </label>
+          <select name='roll'>
+            <option value='user'> Usuario</option>
+            <option value='administrador'>Administrador</option>
+          </select>
+          <label htmlFor='email'>Email</label>
+          <input type='email' name='email' /> <br />
+          <label htmlFor='pasword'>Constraseña</label>
+          <input type='password' name='password' /> <br />
+          <button type='submit'>Enviar</button>
+          <p>¿Aún no tenés una cuenta? Registrate</p>
+        </form>
+      )}
+
+      {solicitudEnviada && !mostrarFormulario && (
+        <div className='confirmation-window'>
+          <p>Tu solicitud fue enviada con éxito</p>
+          <button className='home-button' onClick={() => navigate('/')}>
+            Volver al inicio
+          </button>
         </div>
       )}
 
-      <form onSubmit={registerHandler} className='form'>
-        <h2>Creá tu cuenta</h2>
-        <label htmlFor='firstName'>Nombre</label>
-        <input type='text' name='firstName' /> <br />
-        <label htmlFor='lastName'>Apellido</label>
-        <input type='text' name='lastName' /> <br />
-        <label htmlFor='firstName'>Edad</label>
-        <input type='number' name='age' /> <br />
-        <label htmlFor='roll'>Función (seleccionar) </label>
-        <select name='roll'>
-          <option value='user'> Usuario</option>
-          <option value='administrador'>Administrador</option>
-        </select>
-        <label htmlFor='email'>Email</label>
-        <input type='email' name='email' /> <br />
-        <label htmlFor='pasword'>Constraseña</label>
-        <input type='password' name='password' /> <br />
-        <button type='submit'>Enviar</button>
-        <p>¿Aún no tenés una cuenta? Registrate</p>
-      </form>
       <Footer />
     </div>
   );
