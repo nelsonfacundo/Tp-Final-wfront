@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from '../Navigation/Navbar.jsx';
 import Footer from '../Navigation/Footer.jsx';
+import '../../assets/styles/Register.css';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
@@ -59,7 +60,7 @@ const RegisterPage = (props) => {
         </div>
       )}
 
-      <form onSubmit={registerHandler}>
+      <form onSubmit={registerHandler} className='form'>
         <h2>Creá tu cuenta</h2>
         <label htmlFor='firstName'>Nombre</label>
         <input type='text' name='firstName' /> <br />

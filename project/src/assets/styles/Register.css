@@ -1,0 +1,74 @@
+.form-container {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.form label {
+  width: 100%;
+  /*text-align: left;*/ /* Alinear texto a la izquierda */
+  margin-bottom: 5px; /* Espacio entre label e input */
+}
+
+.form input,
+.form select {
+  background-color: rgb(229, 227, 238);
+  height: 40px;
+  width: 47%;
+  margin-bottom: 15px;
+  border: none;
+  border-radius: 30px;
+  font-weight: bold;
+  padding: 0 15px; /* Agregado padding para mejorar la apariencia */
+  box-sizing: border-box;
+}
+
+.form button {
+  background-color: rgb(83, 82, 82);
+  color: rgb(250, 250, 250);
+  width: 17%;
+  height: 40px;
+  border: none;
+  border-radius: 30px;
+  font-weight: bold;
+  font-size: 15px;
+  margin-bottom: 20px;
+  transition: background-color 0.2s;
+  cursor: pointer;
+}
+
+.form button:hover {
+  background-color: rgb(116, 116, 117);
+  border-width: 2.4px;
+  border-style: solid;
+}
+
+.form button:active {
+  background-color: rgb(134, 132, 136);
+}
+
+label {
+  font-size: 17px;
+}
+
+.form h2 {
+  font-size: 27px;
+  margin-top: 50px;
+}
+
+.form p {
+  color: rgb(14, 90, 14);
+  font-size: 18px;
+  font-weight: bold;
+}
