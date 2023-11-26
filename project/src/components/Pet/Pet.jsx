@@ -1,5 +1,5 @@
 import React from "react";
-import { getUserId } from "./lib/Auth";
+import { getUserId } from "../../lib/Auth";
 
 import "../../assets/styles/Pet.css";
 

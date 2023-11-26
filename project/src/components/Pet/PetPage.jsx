@@ -4,18 +4,17 @@ import Pagination from "../Navigation/Pagination";
 import "../../assets/styles/Pet.css";
 import PetList from "./PetList";
 import React, { useState, useEffect } from "react";
-const dotenv = require('dotenv');
-
-dotenv.config();
-
+import Constants from "../../lib/Constants.js";
 const PetPage = (props) => {
 	const [pets, setPets] = useState([]);
 	const [pageSize, setPageSize] = useState(3);
 	const [currentPage, setCurrentPage] = useState(0);
 	const [totalPets, setTotalPets] = useState(0);
+	console.log(process.env);
 
-	const apiUrl = process.env.API_BASE_URL+process.env.PORT+`/api/pets?pageSize=${pageSize}&page=${currentPage}`;
+	const apiUrl = `${Constants.API_BASE_URL}:${Constants.API_PORT}/api/pets?pageSize=${pageSize}&page=${currentPage}`;
 
+console.log(apiUrl);
 	useEffect(() => {
 		const fetchPets = async () => {
 			try {
@@ -48,7 +47,7 @@ const PetPage = (props) => {
 			<Navbar />
 			<div className="pet-container">
 				<div className="col-left">
-					<h1>Adoptá</h1>
+					<h1>Mascotas</h1>
 				</div>
 				<PetList pets={pets} />
 			</div>
