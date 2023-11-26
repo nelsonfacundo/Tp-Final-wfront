@@ -4,6 +4,9 @@ import Pagination from "../Navigation/Pagination";
 import "../../assets/styles/Pet.css";
 import PetList from "./PetList";
 import React, { useState, useEffect } from "react";
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 const PetPage = (props) => {
 	const [pets, setPets] = useState([]);
@@ -11,7 +14,7 @@ const PetPage = (props) => {
 	const [currentPage, setCurrentPage] = useState(0);
 	const [totalPets, setTotalPets] = useState(0);
 
-	const apiUrl = `http://localhost:3001/api/pets?pageSize=${pageSize}&page=${currentPage}`;
+	const apiUrl = process.env.API_BASE_URL+process.env.PORT+`/api/pets?pageSize=${pageSize}&page=${currentPage}`;
 
 	useEffect(() => {
 		const fetchPets = async () => {
