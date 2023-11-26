@@ -12,24 +12,19 @@ const Navbar = () => {
         <li>
           <a href="/">Inicio</a>
         </li>
+        <li>          
+          <Link to={`/adopt`}>Adoptar</Link>
+        </li>        
+        <li>          
+          <Link to={`/pets`}>Mascotas</Link>
+        </li>        
+      </ul>
+      <ul className="navbar-session-user">       
         <li>
-          <a href="/adopt">Adoptar</a>
+          <Link to={`/register`} className="navbar-register">Registrarse</Link>
         </li>
-
         <li>
           <Link to={`/login`}>Inicio de sesión </Link>
-        </li>
-      </ul>
-      <ul className="navbar-session-user">
-        <li>
-          <a href="/" className="navbar-register">
-            Registrarse
-          </a>
-        </li>
-        <li>
-          <a href="/" className="navbar-session">
-            Iniciar Sesion
-          </a>
         </li>
       </ul>
     </nav>
