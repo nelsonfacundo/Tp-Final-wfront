@@ -47,7 +47,7 @@ const PetPage = (props) => {
 				<div className="col-left">
 					<h1>Adoptá</h1>
 				</div>
-				<PetList pets={pets} />
+				<PetList pets={pets} showAdoptButton />
 			</div>
 			<div className="pet-container">
 				<div className="col-left">
