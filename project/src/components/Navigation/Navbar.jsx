@@ -13,23 +13,20 @@ const Navbar = () => {
           <a href='/'>Inicio</a>
         </li>
         <li>
-          <a href='/adopt'>Adoptar</a>
+          <Link to={`/adopt`}>Adoptar</Link>
         </li>
-
         <li>
-          <Link to={`/login`}>Inicio de sesión </Link>
+          <Link to={`/pets`}>Mascotas</Link>
         </li>
       </ul>
       <ul className='navbar-session-user'>
         <li>
-          <Link to={'/register'} className='navbar-register'>
+          <Link to={`/register`} className='navbar-register'>
             Registrarse
           </Link>
         </li>
         <li>
-          <a href='/' className='navbar-session'>
-            Iniciar Sesion
-          </a>
+          <Link to={`/login`}>Inicio de sesión </Link>
         </li>
       </ul>
     </nav>

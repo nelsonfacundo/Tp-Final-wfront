@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './components/home/Home';
 import Login from './components/login/Login';
 import PetPage from './components/Pet/PetPage';
+import AdoptPage from './components/Pet/AdoptPage';
 import RegisterPage from './components/register/RegisterPage';
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/login/' element={<Login />} />
+        <Route path='/adopt/' element={<AdoptPage />} />
         <Route path='/adopt/' element={<PetPage />} />
         <Route path='/register' element={<RegisterPage />} />
       </Routes>

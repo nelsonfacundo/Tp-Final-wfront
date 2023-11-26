@@ -14,7 +14,7 @@ const PetPage = (props) => {
 	const [currentPage, setCurrentPage] = useState(0);
 	const [totalPets, setTotalPets] = useState(0);
 
-	const apiUrl = process.env.API_BASE_URL+process.env.PORT+`/api/pets?pageSize=${pageSize}&page=${currentPage}`;
+	const apiUrl = process.env.API_BASE_URL+process.env.PORT+`/api/pets/adoptables?pageSize=${pageSize}&page=${currentPage}`;
 
 	useEffect(() => {
 		const fetchPets = async () => {
