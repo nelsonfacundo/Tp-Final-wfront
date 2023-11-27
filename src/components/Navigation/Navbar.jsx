@@ -50,7 +50,7 @@ const Navbar = () => {
 						</Link>
 					</li>
 					<li>
-						<Link to={`/profile`}>Mi Perfil</Link>
+						<Link to={`/login`}>Iniciar sesion</Link>
 					</li>
 				</ul>
 			)}

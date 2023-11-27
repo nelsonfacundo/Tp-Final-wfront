@@ -33,7 +33,7 @@ const Login = (props) => {
           console.log(data);
           localStorage.setItem("authToken", data.token);
           alert("Respuesta del servidor:", JSON.stringify(data));
-          //navigate("/adopt");
+          navigate("/adopt");
         }
 			})
 			.catch((error) => {
