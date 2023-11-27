@@ -2,6 +2,7 @@ import React from 'react';
 import Navbar from '../Navigation/Navbar.jsx';
 import Footer from '../Navigation/Footer.jsx';
 import '../../assets/styles/Register.css';
+import RegisterImage from '../../assets/images/Register_user.png';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
@@ -82,7 +83,8 @@ const RegisterPage = (props) => {
 
       {solicitudEnviada && !mostrarFormulario && (
         <div className='confirmation-window'>
-          <p>Tu solicitud fue enviada con éxito</p>
+          <p>Tu solicitud fue recibida con éxito</p>
+          <img src={RegisterImage} alt='Imagen de confirmación' />
           <button className='home-button' onClick={() => navigate('/')}>
             Volver al inicio
           </button>

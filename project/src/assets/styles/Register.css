@@ -83,8 +83,8 @@ label {
 .confirmation-window {
   color: rgb(20, 109, 20);
   font-size: 45px;
-  margin-top: 125px;
-  margin-bottom: 200px;
+  margin-top: 70px;
+  margin-bottom: 100px;
   align-items: center;
   display: flex;
   flex-direction: column;
