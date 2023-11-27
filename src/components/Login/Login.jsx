@@ -29,9 +29,12 @@ const Login = (props) => {
 				return response.json(); // Parse response body as JSON
 			})
 			.then((data) => {
-        console.log(data);
-				alert("Respuesta del servidor:", JSON.stringify(data));
-			//	navigate("/");
+        if(data.token){
+          console.log(data);
+          localStorage.setItem("authToken", data.token);
+          alert("Respuesta del servidor:", JSON.stringify(data));
+          //navigate("/adopt");
+        }
 			})
 			.catch((error) => {
 				console.error("Error:", error);

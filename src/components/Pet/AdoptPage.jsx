@@ -5,6 +5,8 @@ import "../../assets/styles/Pet.css";
 import PetList from "./PetList";
 import React, { useState, useEffect } from "react";
 import Constants from "../../lib/Constants.js";
+import Auth, { getUserId, getUserIdFromToken, isAdmin } from "../../lib/Auth.js";
+
 
 const PetPage = (props) => {
 	const [pets, setPets] = useState([]);
@@ -13,7 +15,6 @@ const PetPage = (props) => {
 	const [totalPets, setTotalPets] = useState(0);
 
 	const apiUrl = `${Constants.API_BASE_URL}:${Constants.API_PORT}/api/pets/adoptables?pageSize=${pageSize}&page=${currentPage}`;
-
 	useEffect(() => {
 		const fetchPets = async () => {
 			try {
