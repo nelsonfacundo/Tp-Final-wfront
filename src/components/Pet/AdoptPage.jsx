@@ -44,24 +44,26 @@ const PetPage = (props) => {
 	return (
 		<div className="main">
 			<Navbar />
-			<div className="pet-container">
-				<div className="col-left">
-					<h1>Adoptá</h1>
+			<section className="container">
+				<div className="pet-container">
+					<div className="col-left">
+						<h1>Adoptá</h1>
+					</div>
+					<PetList pets={pets} showAdoptButton />
 				</div>
-				<PetList pets={pets} showAdoptButton />
-			</div>
-			<div className="pet-container">
-				<div className="col-left">
-					<div>&nbsp;</div>
+				<div className="pet-container">
+					<div className="col-left">
+						<div>&nbsp;</div>
+					</div>
+					<div className="col-right">
+						<Pagination
+							totalPages={totalPages}
+							currentPage={currentPage}
+							onPageChange={handlePageChange}
+						/>
+					</div>
 				</div>
-				<div className="col-right">
-					<Pagination
-						totalPages={totalPages}
-						currentPage={currentPage}
-						onPageChange={handlePageChange}
-					/>
-				</div>
-			</div>
+			</section>
 			<Footer />
 		</div>
 	);
