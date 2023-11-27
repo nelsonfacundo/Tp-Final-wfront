@@ -6,6 +6,7 @@ import Login from './components/login/Login';
 import PetPage from './components/Pet/PetPage';
 import AdoptPage from './components/Pet/AdoptPage';
 import RegisterPage from './components/register/RegisterPage';
+import Administrator from './components/administrator/Administrator';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path='/adopt/' element={<AdoptPage />} />
         <Route path='/adopt/' element={<PetPage />} />
         <Route path='/register' element={<RegisterPage />} />
+        <Route path='/admin' element={<Administrator />} />
       </Routes>
     </BrowserRouter>
   );
