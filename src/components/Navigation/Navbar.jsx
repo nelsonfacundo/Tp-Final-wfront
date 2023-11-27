@@ -3,20 +3,20 @@ import "../../assets/styles/Navbar.css";
 import Logo from "../../assets/images/Logo.png";
 import { Link } from "react-router-dom";
 import Auth, {
+  isAdmin,
 	isAuthenticated,
-  getUserFromToken,
-  clearAuthToken
+	getUserFromToken,
+	clearAuthToken,
 } from "../../lib/Auth.js";
 import { useNavigate } from "react-router-dom";
 
-
 const Navbar = () => {
-  const navigate = useNavigate();
+	const navigate = useNavigate();
 
-  const handleLogout = () => {
-    clearAuthToken();
-    navigate("/login");
-  };
+	const handleLogout = () => {
+		clearAuthToken();
+		navigate("/login");
+	};
 
 	return (
 		<nav className="navbar">
@@ -26,9 +26,15 @@ const Navbar = () => {
 				<li>
 					<a href="/">Inicio</a>
 				</li>
-				<li>
-					<Link to={`/adopt`}>Adoptar</Link>
-				</li>
+				{isAuthenticated() ? (
+					<li>
+						<Link to={`/adminadopt`}>Administrar Adopciones</Link>
+					</li>
+				) : (
+					<li>
+						<Link to={`/adopt`}>Adoptar</Link>
+					</li>
+				)}
 				<li>
 					<Link to={`/pets`}>Mascotas</Link>
 				</li>
@@ -36,11 +42,15 @@ const Navbar = () => {
 			{isAuthenticated() ? (
 				<ul className="navbar-session-user">
 					<li>
-						<span>Hola {getUserFromToken().firstName} {getUserFromToken().lastName} </span>
+						<span>
+							Hola {getUserFromToken().firstName} {getUserFromToken().lastName}{" "}
+						</span>
 					</li>
-          <li>
-            <button className="home-button" onClick={handleLogout}>Cerrar sesión</button>
-          </li>
+					<li>
+						<button className="home-button" onClick={handleLogout}>
+							Cerrar sesión
+						</button>
+					</li>
 				</ul>
 			) : (
 				<ul className="navbar-session-user">
