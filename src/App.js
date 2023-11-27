@@ -5,8 +5,8 @@ import Home from './components/Home/Home';
 import Login from './components/Login/Login';
 import PetPage from './components/Pet/PetPage';
 import AdoptPage from './components/Pet/AdoptPage';
-import RegisterPage from './components/Register/RegisterPage';
-import Administrator from './components/Administrator/Administrator';
+import RegisterPage from './components/register/RegisterPage';
+import Administrator from './components/administrator/Administrator';
 import AdminAdoptionsPage from './components/Pet/AdminAdoptionsPage';
 
 function App() {
