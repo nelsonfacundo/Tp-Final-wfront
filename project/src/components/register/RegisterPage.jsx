@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from '../Navigation/Navbar.jsx';
 import Footer from '../Navigation/Footer.jsx';
 import '../../assets/styles/Register.css';
 import RegisterImage from '../../assets/images/Register_user.png';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import RegisterForm from './RergisterForm.jsx';
 
-const RegisterPage = (props) => {
+const RegisterPage = () => {
   const navigate = useNavigate();
   const [solicitudEnviada, setSolicitudEnviada] = useState(false);
   const [mostrarFormulario, setMostrarFormulario] = useState(true);
@@ -58,28 +58,7 @@ const RegisterPage = (props) => {
     <div>
       <Navbar />
 
-      {mostrarFormulario && (
-        <form onSubmit={registerHandler} className='form'>
-          <h2>Creá tu cuenta</h2>
-          <label htmlFor='firstName'>Nombre</label>
-          <input type='text' name='firstName' /> <br />
-          <label htmlFor='lastName'>Apellido</label>
-          <input type='text' name='lastName' /> <br />
-          <label htmlFor='firstName'>Edad</label>
-          <input type='number' name='age' /> <br />
-          <label htmlFor='roll'>Función (seleccionar) </label>
-          <select name='roll'>
-            <option value='user'> Usuario</option>
-            <option value='administrador'>Administrador</option>
-          </select>
-          <label htmlFor='email'>Email</label>
-          <input type='email' name='email' /> <br />
-          <label htmlFor='pasword'>Constraseña</label>
-          <input type='password' name='password' /> <br />
-          <button type='submit'>Enviar</button>
-          <p>¿Aún no tenés una cuenta? Registrate</p>
-        </form>
-      )}
+      {mostrarFormulario && <RegisterForm onSubmit={registerHandler} />}
 
       {solicitudEnviada && !mostrarFormulario && (
         <div className='confirmation-window'>
