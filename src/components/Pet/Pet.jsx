@@ -113,14 +113,16 @@ const PetCard = ({ pet, showAdoptButton }) => {
       <p>
         <strong>Estado de adopcion:</strong> {status}
       </p>
-      {showAdoptButton && (
-        <>
-          <button onClick={() => adoptar(_id)}>Adoptar</button>
-          <button onClick={rejectAdoption}>Rechazar</button>
-          <button onClick={approveAdoption}>Aprobar</button>
-          <button onClick={deleteAdoption}>Eliminar</button>
-        </>
-      )}
+      {showAdoptButton && isAuthenticated() && isAdmin() && (
+				<>
+					<button onClick={rejectAdoption}>Rechazar</button>
+					<button onClick={approveAdoption}>Aprobar</button>
+					<button onClick={deleteAdoption}>Eliminar</button>
+				</>
+			)}
+			{showAdoptButton && isAuthenticated() && !isAdmin() && (
+				<button onClick={() => adoptar(_id)}>Adoptar</button>
+			)}
     </div>
   );
 };
