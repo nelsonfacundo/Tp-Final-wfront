@@ -12,7 +12,7 @@ const PetPage = (props) => {
 	const [currentPage, setCurrentPage] = useState(0);
 	const [totalPets, setTotalPets] = useState(0);
 
-	const apiUrl = `${Constants.API_BASE_URL}:${Constants.API_PORT}/api/pets/adoptables?pageSize=${pageSize}&page=${currentPage}`;
+	const apiUrl = `${Constants.API_BASE_URL}:${Constants.API_PORT}/api/pets?pageSize=${pageSize}&page=${currentPage}`;
 
 	useEffect(() => {
 		const fetchPets = async () => {
@@ -44,24 +44,26 @@ const PetPage = (props) => {
 	return (
 		<div className="main">
 			<Navbar />
-			<div className="pet-container">
-				<div className="col-left">
-					<h1>Adoptá</h1>
+			<section className="container">
+				<div className="pet-container">
+					<div className="col-left">
+						<h1>Mascotas</h1>
+					</div>
+					<PetList pets={pets} />
 				</div>
-				<PetList pets={pets} showAdoptButton />
-			</div>
-			<div className="pet-container">
-				<div className="col-left">
-					<div>&nbsp;</div>
+				<div className="pet-container">
+					<div className="col-left">
+						<div>&nbsp;</div>
+					</div>
+					<div className="col-right">
+						<Pagination
+							totalPages={totalPages}
+							currentPage={currentPage}
+							onPageChange={handlePageChange}
+						/>
+					</div>
 				</div>
-				<div className="col-right">
-					<Pagination
-						totalPages={totalPages}
-						currentPage={currentPage}
-						onPageChange={handlePageChange}
-					/>
-				</div>
-			</div>
+			</section>
 			<Footer />
 		</div>
 	);

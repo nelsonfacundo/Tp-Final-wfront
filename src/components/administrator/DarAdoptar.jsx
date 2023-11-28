@@ -12,7 +12,6 @@ const DarAdoptar = () => {
       especie: '',
       genero: '',
       provincia: '',
-      direccion: '',
       image: null,
     });
   
@@ -190,20 +189,8 @@ const DarAdoptar = () => {
                   required
                 />
               </div>
-  
-              <div className="form-group col-md-8">
-                <label htmlFor="direccion">Dirección:</label>
-                <input
-                  type="text"
-                  id="direccion"
-                  name="direccion"
-                  value={form.direccion}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
             </div>
-  
+
             {/* Fin Formulario*/}
             <div className="form-group col-md-12">
               <button

@@ -1,12 +1,13 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Home from './components/home/Home';
-import Login from './components/login/Login';
+import Home from './components/Home/Home';
+import Login from './components/Login/Login';
 import PetPage from './components/Pet/PetPage';
 import AdoptPage from './components/Pet/AdoptPage';
 import RegisterPage from './components/register/RegisterPage';
 import Administrator from './components/administrator/Administrator';
+import AdminAdoptionsPage from './components/Pet/AdminAdoptionsPage';
 
 function App() {
   return (
@@ -15,7 +16,8 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/login/' element={<Login />} />
         <Route path='/adopt/' element={<AdoptPage />} />
-        <Route path='/adopt/' element={<PetPage />} />
+        <Route path='/adminadopt/' element={<AdminAdoptionsPage />} />
+        <Route path='/pets/' element={<PetPage />} />
         <Route path='/register' element={<RegisterPage />} />
         <Route path='/admin' element={<Administrator />} />
       </Routes>
