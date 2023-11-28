@@ -27,16 +27,9 @@ const DarAdoptar = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Restablecer la URL del objeto para liberar recursos
-    URL.revokeObjectURL(form.image);
-
     const formData = new FormData();
-    formData.append("image", e.target.image.files[0]);
-
     Object.entries(form).forEach(([key, value]) => {
-      if (key !== "image") {
-        formData.append(key, value);
-      }
+      formData.append(key, value);
     });
 
     try {
