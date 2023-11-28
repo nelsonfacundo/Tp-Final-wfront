@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { getUserId, isAdmin, isAuthenticated } from "../../lib/Auth";
+import { useNavigate } from 'react-router-dom';
+
 import "../../assets/styles/Pet.css";
 import Constants from "../../lib/Constants.js";
 import Message from "../Navigation/Message";
@@ -98,6 +100,31 @@ const PetCard = ({ pet, showAdoptButton }) => {
 		}
 	};
 
+  const deletePet = async () => {
+    try {
+      const response = await fetch(
+        `${Constants.API_BASE_URL}:${Constants.API_PORT}/api/pets/deletePet/${_id}`,
+        {
+          method: "DELETE",
+        }
+      );
+      if (response.ok) {
+        setMessage({ text: `Mascota eliminada con éxito`, type: "success" });
+        setIsDeleted(true);
+      } else {
+        setMessage({ text: "Fallo al eliminar la mascota", type: "error" });
+      }
+    } catch (error) {
+      console.error("Error: ", error);
+    }
+  };
+
+  const navigate = useNavigate();
+
+  const editPet = () => {
+    navigate(`/agregarAdopcion?id=${pet._id}`);
+  };
+
 	return (
 		<div className="petCard">
       {message && <Message text={message.text} type={message.type} />}
@@ -127,11 +154,17 @@ const PetCard = ({ pet, showAdoptButton }) => {
 				<>
 					<button onClick={rejectAdoption}>Rechazar</button>
 					<button onClick={approveAdoption}>Aprobar</button>
-					<button onClick={deleteAdoption}>Eliminar</button>
+					<button onClick={deleteAdoption}>Eliminar (resetear)</button>
 				</>
 			)}
 			{showAdoptButton && isAuthenticated() && !isAdmin() && (
 				<button onClick={() => adoptar(_id)}>Adoptar</button>
+			)}
+      {!showAdoptButton && isAuthenticated() && isAdmin() && !isDeleted && (
+				<>
+					<button onClick={editPet}>Editar</button>
+					<button onClick={deletePet}>Eliminar</button>
+				</>
 			)}
 		</div>
 	);
