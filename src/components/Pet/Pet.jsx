@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { getUserId } from "../../lib/Auth";
 import "../../assets/styles/Pet.css";
 import Constants from "../../lib/Constants.js";
+import Message from "../Navigation/Message";
 
 const PetCard = ({ pet, showAdoptButton }) => {
+  const [message, setMessage] = useState(""); 
   const { _id, name, specie, race, gender, age, description, status } = pet;
 
   const adoptar = async () => {
@@ -23,9 +25,9 @@ const PetCard = ({ pet, showAdoptButton }) => {
         }
       );
       if (response.ok) {
-        alert(`Solicitud de adopcion enviada`);
+        setMessage({ text:`Solicitud de adopcion enviada`,type: "success"});
       } else {
-        alert("Solicitud de adopcion fallida");
+        setMessage({ text:"Solicitud de adopcion fallida",type: "error"});
       }
     } catch (error) {
       console.error("Error: ", error);
@@ -41,9 +43,9 @@ const PetCard = ({ pet, showAdoptButton }) => {
         }
       );
       if (response.ok) {
-        alert(`Adoption rechazada con exito`);
+        setMessage({ text:`Adoption rechazada con exito`,type: "success"});
       } else {
-        alert("Error al rechazar la adopcion");
+        setMessage({ text:"Error al rechazar la adopcion",type: "error"});
       }
     } catch (error) {
       console.error("Error: ", error);
@@ -59,9 +61,9 @@ const PetCard = ({ pet, showAdoptButton }) => {
         }
       );
       if (response.ok) {
-        alert(`Adopcion realizada con exito`);
+        setMessage({ text:`Adopcion realizada con exito`,type: "success"});
       } else {
-        alert("Adopcion fallida");
+        setMessage({ text:"Adopcion fallida",type: "error"});
       }
     } catch (error) {
       console.error("Error: ", error);
@@ -77,9 +79,9 @@ const PetCard = ({ pet, showAdoptButton }) => {
         }
       );
       if (response.ok) {
-        alert(`Adopcion borrada con exito`);
+        setMessage({ text:`Adopcion borrada con exito`,type: "success"});
       } else {
-        alert("Fallo el borrar la adopcion");
+        setMessage({ text:"Fallo el borrar la adopcion",type: "error"});
       }
     } catch (error) {
       console.error("Error: ", error);

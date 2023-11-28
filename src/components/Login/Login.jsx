@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../Navigation/Navbar.jsx";
 import Footer from "../Navigation/Footer.jsx";
 import Constants from "../../lib/Constants.js";
+import Message from "../Navigation/Message";
+import "../../assets/styles/styles.css";
+
 
 const Login = (props) => {
+	const [message, setMessage] = useState(""); 
 	const navigate = useNavigate();
 	const LoginHandler = (event) => {
 		event.preventDefault();
@@ -23,7 +27,7 @@ const Login = (props) => {
 		)
 			.then((response) => {
 				if (!response.ok) {
-					alert("La solicitud no fue exitosa");
+					setMessage({text:"La solicitud no fue exitosa",type: "error"});
 					throw new Error("Network response was not ok");
 				}
 				return response.json(); // Parse response body as JSON
@@ -32,7 +36,7 @@ const Login = (props) => {
         if(data.token){
           console.log(data);
           localStorage.setItem("authToken", data.token);
-          alert("Respuesta del servidor:", JSON.stringify(data));
+          setMessage({ text: "Respuesta del servidor: "+JSON.stringify(data),type: "success"});
           navigate("/adopt");
         }
 			})
@@ -46,6 +50,7 @@ const Login = (props) => {
 			<Navbar />
 			<section className="container">
 				<form onSubmit={LoginHandler} className="form">
+			{message && <Message text={message.text} type={message.type} />}
 					<input type="Email" name="Email" placeholder="Ingrese email" />
 					<br />
 					<input type="password" name="Password" placeholder="Password" />{" "}
