@@ -20,7 +20,7 @@ function App() {
         <Route path="/pets/" element={<PetPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/admin" element={<Administrator />} />
-        <Route path="/agregarAdopcion" element={<Administrator />} />
+        <Route path="/agregarMascota" element={<Administrator />} />
       </Routes>
     </BrowserRouter>
   );
