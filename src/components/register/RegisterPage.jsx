@@ -11,16 +11,14 @@ const RegisterPage = () => {
   const [solicitudEnviada, setSolicitudEnviada] = useState(false);
   const [mostrarFormulario, setMostrarFormulario] = useState(true);
 
-  const registerHandler = (event) => {
-    event.preventDefault();
-
+  const registerHandler = (data) => {
     const registro = {
-      firstName: event.target.firstName.value,
-      lastName: event.target.lastName.value,
-      age: event.target.age.value,
-      roll: event.target.roll.value,
-      email: event.target.email.value,
-      password: event.target.password.value,
+      firstName: data.firstName,
+      lastName: data.lastName,
+      age: data.age,
+      roll: data.roll || document.querySelector('select[name="roll"]').value,
+      email: data.email,
+      password: data.password,
     };
 
     const requestOptions = {
@@ -31,10 +29,10 @@ const RegisterPage = () => {
 
     console.log(
       "URL de la solicitud:",
-      "http://localhost:3000/api/users/register"
+      "http://localhost:5000/api/users/register"
     );
 
-    fetch("http://localhost:3000/api/users/register", requestOptions)
+    fetch("http://localhost:5000/api/users/register", requestOptions)
       .then((response) => {
         const contentType = response.headers.get("content-type");
         if (contentType && contentType.includes("application/json")) {
