@@ -14,10 +14,6 @@ const DarAdoptar = () => {
     province: "",
   });
 
-  const handleImageUpload = (e) => {
-    const file = e.target.files[0];
-    setForm({ ...form, image: URL.createObjectURL(file) });
-  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -55,60 +51,29 @@ const DarAdoptar = () => {
     <div>
       <h3>Inicio / Poné en Adopción</h3>
       <form onSubmit={handleSubmit} className="row dar-adoptar-form mt-4">
-        {/* Sección de Subir Foto */}
-        <div className="col-md-3">
-          <div className="row justify-content-center">
-            <div className="form-group preview-container">
-              {form.image ? (
-                <img src={form.image} alt="Preview" className="preview-image" />
-              ) : (
-                <span style={{ color: "white" }}>No hay imagen</span>
-              )}
-            </div>
-          </div>
-
-          <div className="form-group row justify-content-center mt-3">
-            <button
-              type="button"
-              className="btn btn-secondary col-md-5"
-              onClick={() => document.getElementById("imageInput").click()}
-            >
-              Subir Foto
-            </button>
-            <input
-              type="file"
-              id="imageInput"
-              className="form-control-file"
-              name="image"
-              onChange={handleImageUpload}
-              accept="image/*"
-              style={{ display: "none" }}
-              required
-            />
-          </div>
-        </div>
+      
 
         <div className="col-md-9">
           <div className="row">
             <div className="form-group col-md-8">
-              <label htmlFor="nombre">Nombre:</label>
+              <label htmlFor="name">Nombre:</label>
               <input
                 type="text"
-                id="nombre"
-                name="nombre"
-                value={form.nombre}
+                id="name"
+                name="name"
+                value={form.name}
                 onChange={handleChange}
                 required
               />
             </div>
 
             <div className="form-group col-md-4">
-              <label htmlFor="edad">Edad:</label>
+              <label htmlFor="age">Edad:</label>
               <input
                 type="text"
-                id="edad"
-                name="edad"
-                value={form.edad}
+                id="age"
+                name="age"
+                value={form.age}
                 onChange={handleChange}
                 required
               />
@@ -116,11 +81,11 @@ const DarAdoptar = () => {
           </div>
 
           <div className="form-group col-md-12">
-            <label htmlFor="descripcion">Descripción:</label>
+            <label htmlFor="description">Descripción:</label>
             <textarea
-              id="descripcion"
-              name="descripcion"
-              value={form.descripcion}
+              id="description"
+              name="description"
+              value={form.description}
               onChange={handleChange}
               required
               rows="5"
@@ -129,36 +94,36 @@ const DarAdoptar = () => {
 
           <div className="row">
             <div className="form-group col-md-4">
-              <label htmlFor="raza">Raza:</label>
+              <label htmlFor="race">Raza:</label>
               <input
                 type="text"
-                id="raza"
-                name="raza"
-                value={form.raza}
+                id="race"
+                name="race"
+                value={form.race}
                 onChange={handleChange}
                 required
               />
             </div>
 
             <div className="form-group col-md-4">
-              <label htmlFor="especie">Especie:</label>
+              <label htmlFor="specie">Especie:</label>
               <input
                 type="text"
-                id="especie"
-                name="especie"
-                value={form.especie}
+                id="specie"
+                name="specie"
+                value={form.specie}
                 onChange={handleChange}
                 required
               />
             </div>
 
             <div className="form-group col-md-4">
-              <label htmlFor="genero">Género:</label>
+              <label htmlFor="gender">Género:</label>
               <input
                 type="text"
-                id="genero"
-                name="genero"
-                value={form.genero}
+                id="gender"
+                name="gender"
+                value={form.gender}
                 onChange={handleChange}
                 required
               />
@@ -167,12 +132,12 @@ const DarAdoptar = () => {
 
           <div className="row">
             <div className="form-group col-md-4">
-              <label htmlFor="provincia">Provincia:</label>
+              <label htmlFor="province">Provincia:</label>
               <input
                 type="text"
-                id="provincia"
-                name="provincia"
-                value={form.provincia}
+                id="province"
+                name="province"
+                value={form.province}
                 onChange={handleChange}
                 required
               />

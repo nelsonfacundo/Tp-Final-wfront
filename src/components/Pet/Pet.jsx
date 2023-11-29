@@ -122,7 +122,7 @@ const PetCard = ({ pet, showAdoptButton }) => {
   const navigate = useNavigate();
 
   const editPet = () => {
-    navigate(`/agregarAdopcion?id=${pet._id}`);
+    navigate(`/agregarmascota?id=${pet._id}`);
   };
 
 	return (

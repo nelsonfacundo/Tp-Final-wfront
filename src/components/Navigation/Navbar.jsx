@@ -32,7 +32,7 @@ const Navbar = () => {
               <Link to={`/adminadopt`}>Administrar Adopciones</Link>
             </li>
             <li>
-              <Link to={`/agregarAdopcion`}>Agregar Mascota</Link>
+              <Link to={`/agregarmascota`}>Agregar Mascota</Link>
             </li>
           </>
         ) : (
