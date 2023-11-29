@@ -2,21 +2,22 @@ import React, { useState } from "react";
 import Navbar from "../Navigation/Navbar.jsx";
 import Footer from "../Navigation/Footer.jsx";
 import "../../assets/styles/Register.css";
-import RegisterImage from "../../assets/images/Register_user.png";
 import { useNavigate } from "react-router-dom";
 import RegisterForm from "./RegisterForm.jsx";
+import RegisterResult from "./RegisterResult.jsx";
 
 const RegisterPage = () => {
   const navigate = useNavigate();
   const [solicitudEnviada, setSolicitudEnviada] = useState(false);
   const [mostrarFormulario, setMostrarFormulario] = useState(true);
+  const [error, setError] = useState(null);
 
   const registerHandler = (data) => {
     const registro = {
       firstName: data.firstName,
       lastName: data.lastName,
       age: data.age,
-      roll: data.roll || document.querySelector('select[name="roll"]').value,
+      role: data.role || document.querySelector('select[name="role"]').value,
       email: data.email,
       password: data.password,
     };
@@ -27,28 +28,31 @@ const RegisterPage = () => {
       body: JSON.stringify(registro),
     };
 
-    console.log(
-      "URL de la solicitud:",
-      "http://localhost:5000/api/users/register"
-    );
-
-    fetch("http://localhost:5000/api/users/register", requestOptions)
+    fetch("http://localhost:8000/api/users/register", requestOptions)
       .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
         const contentType = response.headers.get("content-type");
         if (contentType && contentType.includes("application/json")) {
+          console.log(response.status);
           return response.json();
         } else {
           return response.text();
         }
       })
       .then((data) => {
-        console.log("Respuesta del servidor:", data);
         setSolicitudEnviada(true);
         setMostrarFormulario(false);
+        console.log("La data", data);
         //navigate('/');
       })
       .catch((error) => {
-        console.error("Error en la solicitud:", error);
+        console.error("Error en la solicitud:", error.message);
+        setError(error instanceof Error ? error.message : "Error desconocido");
+        setSolicitudEnviada(true);
+        setMostrarFormulario(false);
       });
   };
 
@@ -57,15 +61,18 @@ const RegisterPage = () => {
       <Navbar />
 
       {mostrarFormulario && <RegisterForm onSubmit={registerHandler} />}
+      {console.log("EL MEGA ERROR", error)}
 
-      {solicitudEnviada && !mostrarFormulario && (
-        <div className="confirmation-window">
-          <p>Tu solicitud fue recibida con éxito</p>
-          <img src={RegisterImage} alt="Imagen de confirmación" />
-          <button className="home-button" onClick={() => navigate("/")}>
-            Volver al inicio
-          </button>
-        </div>
+      {solicitudEnviada && (
+        <RegisterResult
+          success={!error}
+          message={
+            error
+              ? `Error en la solicitud al procesar la solicitud`
+              : "Tu solicitud fue recibida con éxito"
+          }
+          onButtonClick={() => navigate(error ? "/register" : "/")}
+        />
       )}
 
       <Footer />

@@ -59,8 +59,8 @@ const RegisterForm = ({ onSubmit }) => {
       />
       <p>{errors.age?.message}</p>
 
-      <label htmlFor="roll">Función (seleccionar) </label>
-      <select name="roll">
+      <label htmlFor="role">Función (seleccionar) </label>
+      <select name="role">
         <option value="user"> Usuario</option>
         <option value="administrador">Administrador</option>
       </select>
