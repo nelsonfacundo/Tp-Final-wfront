@@ -27,13 +27,17 @@ const DarAdoptar = () => {
     Object.entries(form).forEach(([key, value]) => {
       formData.append(key, value);
     });
-
+console.log(form);
+console.log(formData);
     try {
       const response = await fetch(
         `${Constants.API_BASE_URL}:${Constants.API_PORT}/api/pets/addPet`,
         {
           method: "POST",
-          body: formData,
+          headers: {
+            "Content-Type": "application/json",
+          },      
+          body: JSON.stringify(form),
         }
       );
 
@@ -70,10 +74,10 @@ const DarAdoptar = () => {
             <div className="form-group col-md-4">
               <label htmlFor="age">Edad:</label>
               <input
-                type="text"
+                type="number"
                 id="age"
                 name="age"
-                value={form.age}
+                value={parseInt(form.age, 10)} 
                 onChange={handleChange}
                 required
               />
@@ -123,7 +127,7 @@ const DarAdoptar = () => {
                 type="text"
                 id="gender"
                 name="gender"
-                value={form.gender}
+                value={form.gender.toString()} 
                 onChange={handleChange}
                 required
               />
