@@ -45,11 +45,10 @@ const RegisterPage = () => {
       .then((data) => {
         setSolicitudEnviada(true);
         setMostrarFormulario(false);
-        console.log("La data", data);
-        //navigate('/');
+        console.log(data);
       })
       .catch((error) => {
-        console.error("Error en la solicitud:", error.message);
+        console.error("Error al procesar la solicitud:", error.message);
         setError(error instanceof Error ? error.message : "Error desconocido");
         setSolicitudEnviada(true);
         setMostrarFormulario(false);
@@ -61,14 +60,13 @@ const RegisterPage = () => {
       <Navbar />
 
       {mostrarFormulario && <RegisterForm onSubmit={registerHandler} />}
-      {console.log("EL MEGA ERROR", error)}
 
       {solicitudEnviada && (
         <RegisterResult
           success={!error}
           message={
             error
-              ? `Error en la solicitud al procesar la solicitud`
+              ? `Error al procesar la solicitud`
               : "Tu solicitud fue recibida con éxito"
           }
           onButtonClick={() => navigate(error ? "/register" : "/")}

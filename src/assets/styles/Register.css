@@ -24,6 +24,7 @@
 
 .form input,
 .form select {
+  color: rgb(20, 76, 35);
   background-color: rgb(229, 227, 238);
   height: 40px;
   width: 47%;
