@@ -27,7 +27,8 @@
   margin-bottom: 20px;
 }
 
-input, textarea {
+input,
+textarea {
   -webkit-border-radius: 20px;
   -moz-border-radius: 20px;
   border-radius: 20px;
@@ -35,7 +36,8 @@ input, textarea {
   background-color: #ccc;
   color: #a0d18c;
   width: 100%;
-  padding: .375rem .75rem;
+  padding: 0.375rem 0.75rem;
   font-size: 1rem;
   font-weight: 400;
+  color: black;
 }
