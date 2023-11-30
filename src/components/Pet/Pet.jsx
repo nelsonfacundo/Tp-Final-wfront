@@ -126,8 +126,8 @@ const PetCard = ({ pet, showAdoptButton }) => {
   };
 
 	return (
-		<div className="petCard">
-      {message && <Message text={message.text} type={message.type} />}
+		<div className={`petCard ${isDeleted ? "petCardDeleted" : ""}`}>
+		{message && <Message text={message.text} type={message.type} />}
 			<h3>{name}</h3>
 			<ul>
 				<li>

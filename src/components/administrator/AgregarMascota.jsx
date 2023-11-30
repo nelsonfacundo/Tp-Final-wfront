@@ -1,14 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../../assets/styles/AgregarMascota.css";
 import Constants from "../../lib/Constants.js";
 import Message from "../Navigation/Message";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const AgregarMascota = () => {
 	const [message, setMessage] = useState("");
 	const [loading, setLoading] = useState(false);
 	const navigate = useNavigate();
+	const location = useLocation();
 
 	const [form, setForm] = useState({
 		name: "",
@@ -19,6 +20,30 @@ const AgregarMascota = () => {
 		description: "",
 		province: "",
 	});
+
+	useEffect(() => {
+		const queryParams = new URLSearchParams(location.search);
+		const petId = queryParams.get("id");
+
+		if (petId) {
+			// Fetch pet data based on the provided id
+			fetch(`${Constants.API_BASE_URL}:${Constants.API_PORT}/api/pets/${petId}`)
+				.then((response) => response.json())
+				.then((data) => {
+					// Populate form fields with the fetched data
+					setForm({
+						name: data.name || "",
+						specie: data.specie || "",
+						race: data.race || "",
+						gender: data.gender || "",
+						age: data.age || "",
+						description: data.description || "",
+						province: data.province || "",
+					});
+				})
+				.catch((error) => console.error("Error fetching pet data:", error));
+		}
+	}, [location.search]);
 
 	const handleChange = (e) => {
 		const { name, value } = e.target;
@@ -34,10 +59,12 @@ const AgregarMascota = () => {
 		});
 
 		try {
+			const petId = new URLSearchParams(location.search).get("id");
+
 			const response = await fetch(
-				`${Constants.API_BASE_URL}:${Constants.API_PORT}/api/pets/addPet`,
+				`${Constants.API_BASE_URL}:${Constants.API_PORT}/api/pets/updatePet/${petId}`,
 				{
-					method: "POST",
+					method: "PUT",
 					headers: {
 						"Content-Type": "application/json",
 					},
@@ -47,7 +74,7 @@ const AgregarMascota = () => {
 
 			if (response.ok) {
 				setMessage({
-					text: "Se logró dar en adopción a la mascota!",
+					text: "Se logró actualizar la información de la mascota!",
 					type: "success",
 				});
 				setTimeout(() => {
@@ -55,13 +82,13 @@ const AgregarMascota = () => {
 				}, 4000);
 			} else {
 				setMessage({
-					text: "Error subiendo la mascota!",
+					text: "Error actualizando la información de la mascota!",
 					type: "error",
 				});
 			}
 		} catch (error) {
 			setMessage({
-				text: "Error subiendo la mascota!" + error,
+				text: "Error actualizando la información de la mascota!" + error,
 				type: "error",
 			});
 			console.error("Error:", error);
@@ -89,7 +116,7 @@ const AgregarMascota = () => {
 								value={form.name}
 								onChange={handleChange}
 								required
-								maxlength="12"
+								maxLength="12"
 							/>
 						</div>
 
@@ -177,7 +204,7 @@ const AgregarMascota = () => {
 							className="btn btn-secondary col-md-12 cargar-mascotas"
 							disabled={loading}
 						>
-							{loading ? "Enviando formulario..." : "Cargar Mascota"}
+							{loading ? "Enviando formulario..." : "Actualizar Mascota"}
 						</button>
 					</div>
 				</div>
