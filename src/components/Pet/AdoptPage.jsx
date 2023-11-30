@@ -40,7 +40,7 @@ const PetPage = (props) => {
 		}
 	};
 
-	const totalPages = Math.ceil(totalPets / pageSize);
+	const totalPages = Math.floor(totalPets / pageSize);
 
 	return (
 		<div className="main">

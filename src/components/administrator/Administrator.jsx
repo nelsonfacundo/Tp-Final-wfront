@@ -7,10 +7,10 @@ const Administrator = () => {
 	return (
 		<div className="main">
 			<Navbar />
-			<section className="container">
+			<div className="container mt-4">
 				<AgregarMascota />
-				<Footer />
-			</section>
+			</div>
+			<Footer />
 		</div>
 	);
 };
