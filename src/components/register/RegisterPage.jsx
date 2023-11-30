@@ -48,8 +48,11 @@ const RegisterPage = () => {
         console.log(data);
       })
       .catch((error) => {
-        console.error("Error al procesar la solicitud:", error.message);
-        setError(error instanceof Error ? error.message : "Error desconocido");
+        console.error("Error al procesar la solicitud:", error);
+        const errorMessage =
+          error instanceof Error ? error.message : "Error desconocido";
+        console.log(errorMessage);
+        setError(errorMessage);
         setSolicitudEnviada(true);
         setMostrarFormulario(false);
       });
@@ -65,11 +68,9 @@ const RegisterPage = () => {
         <RegisterResult
           success={!error}
           message={
-            error
-              ? `Error al procesar la solicitud`
-              : "Tu solicitud fue recibida con éxito"
+            error ? error.message : "Tu solicitud fue recibida con éxito"
           }
-          onButtonClick={() => navigate(error ? "/register" : "/")}
+          onButtonClick={() => navigate("/")}
         />
       )}
 

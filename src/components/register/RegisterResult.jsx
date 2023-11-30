@@ -9,11 +9,11 @@ const RegisterResult = ({ success, message, onButtonClick }) => {
       <p>{message}</p>
       <img
         src={success ? RegisterImage : ErrorImage}
-        alt={success ? "Registro exitoso" : "Error de registro"}
+        alt={success ? "Registro exitoso" : message}
       />
 
       <button className="home-button" onClick={onButtonClick}>
-        {!success ? "Reintentar" : "Volver al inicio"}
+        {!success ? "Volver al inicio" : "Volver al inicio"}
       </button>
     </div>
   );
