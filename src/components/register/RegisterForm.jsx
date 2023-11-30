@@ -87,7 +87,6 @@ const RegisterForm = ({ onSubmit }) => {
       <p>{errors.password?.message}</p>
 
       <button type="submit">Enviar</button>
-      <p>¿Aún no tenés una cuenta? Registrate</p>
     </form>
   );
 };
