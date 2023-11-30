@@ -3,7 +3,7 @@ import "../../assets/styles/Footer.css";
 
 const Footer = () => {
   return (
-    <footer className="footer fixed-bottom">
+    <footer className="footer">
       <div className="container-footer">
         <p>
           SOBRE NOSOTROS TÉRMINOS Y CONDICIONES adoptame © Todos los derechos

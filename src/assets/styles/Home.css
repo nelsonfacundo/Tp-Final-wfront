@@ -4,13 +4,14 @@
     margin: 0;
 }
 
-.main-conteiner{
+.main-conteiner {
     font-family: 'Truculenta', sans-serif;
     margin-top: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
-}
+    margin-bottom: 150px; 
+ }
 
 .section{
 display: flex;
