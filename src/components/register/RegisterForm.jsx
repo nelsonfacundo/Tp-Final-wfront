@@ -49,11 +49,11 @@ const RegisterForm = ({ onSubmit }) => {
           required: "Este campo es obligatorio",
           min: {
             value: 13,
-            message: "La edad debe ser de 13 años o más.",
+            message: "La edad debe ser de 13 años o más",
           },
           max: {
             value: 120,
-            message: "La edad debe ser menor a 120 años.",
+            message: "La edad debe ser menor a 120 años",
           },
         })}
       />
@@ -87,7 +87,6 @@ const RegisterForm = ({ onSubmit }) => {
       <p>{errors.password?.message}</p>
 
       <button type="submit">Enviar</button>
-      <p>¿Aún no tenés una cuenta? Registrate</p>
     </form>
   );
 };

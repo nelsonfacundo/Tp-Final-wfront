@@ -11,6 +11,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-bottom: 150px; 
   text-align: center;
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
@@ -78,7 +79,7 @@ label {
 }
 
 .form p {
-  color: rgb(14, 90, 14);
+  color: rgb(216, 9, 81);
   font-size: 18px;
   font-weight: bold;
 }
