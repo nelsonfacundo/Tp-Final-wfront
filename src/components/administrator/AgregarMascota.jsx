@@ -50,7 +50,7 @@ const AgregarMascota = () => {
 		const { name, value } = e.target;
 		setForm({ ...form, [name]: value });
 	};
-	
+
 	const petId = new URLSearchParams(location.search).get("id");
 
 	let buttonMessage = petId ? "Actualizar" : "Agregar";
@@ -62,23 +62,39 @@ const AgregarMascota = () => {
 			formData.append(key, value);
 		});
 
-
 		try {
+			let responseFetch;
+			if (petId) {
+				responseFetch = await fetch(
+					`${Constants.API_BASE_URL}:${Constants.API_PORT}/api/pets/updatePet/${petId}`,
+					{
+						method: "PUT",
+						headers: {
+							"Content-Type": "application/json",
+						},
+						body: JSON.stringify(form),
+					}
+				)
+			} else {
+				responseFetch = await  fetch(
+					`${Constants.API_BASE_URL}:${Constants.API_PORT}/api/pets/addPet`,
+					{
+						method: "POST",
+						headers: {
+							"Content-Type": "application/json",
+						},
+						body: JSON.stringify(form),
+					}
+				)
+			};
 
-			const response = await fetch(
-				`${Constants.API_BASE_URL}:${Constants.API_PORT}/api/pets/updatePet/${petId}`,
-				{
-					method: "PUT",
-					headers: {
-						"Content-Type": "application/json",
-					},
-					body: JSON.stringify(form),
-				}
-			);
+			const response = responseFetch;
 
 			if (response.ok) {
 				setMessage({
-					text: 'Se logró  ${isUpdating ? "actualizar" : "agregar"} la información de la mascota!',
+					text: `Se logró  ${
+						isUpdating ? "actualizar" : "agregar"
+					} la información de la mascota!`,
 					type: "success",
 				});
 				setTimeout(() => {
@@ -86,13 +102,18 @@ const AgregarMascota = () => {
 				}, 4000);
 			} else {
 				setMessage({
-					text: 'Error ${isUpdating ? "actualizando" : "agregando"} la información de la mascota!',
+					text: `Error ${
+						isUpdating ? "actualizando" : "agregando"
+					} la información de la mascota!`,
 					type: "error",
 				});
 			}
 		} catch (error) {
 			setMessage({
-				text: 'Error ${isUpdating ? "actualizando" : "agregando"} la información de la mascota! ${error}' + error,
+				text:
+					`Error ${
+						isUpdating ? "actualizando" : "agregando"
+					} la información de la mascota! ${error}` + error,
 				type: "error",
 			});
 			console.error("Error:", error);
