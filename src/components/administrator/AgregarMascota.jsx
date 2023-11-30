@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../../assets/styles/DarAdoptar.css";
+import "../../assets/styles/AgregarMascota.css";
 import Constants from "../../lib/Constants.js";
 import Message from "../Navigation/Message";
 import { useNavigate } from "react-router-dom";
 
-const DarAdoptar = () => {
+const AgregarMascota = () => {
 	const [message, setMessage] = useState("");
+	const [loading, setLoading] = useState(false);
 	const navigate = useNavigate();
 
 	const [form, setForm] = useState({
@@ -26,7 +27,7 @@ const DarAdoptar = () => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-
+		setLoading(true);
 		const formData = new FormData();
 		Object.entries(form).forEach(([key, value]) => {
 			formData.append(key, value);
@@ -50,27 +51,31 @@ const DarAdoptar = () => {
 					type: "success",
 				});
 				setTimeout(() => {
-          navigate("/pets");
+					navigate("/pets");
 				}, 4000);
 			} else {
-        setMessage({
-          text: "Error subiendo la mascota!" + response,
-          type: "error",
-        });
+				setMessage({
+					text: "Error subiendo la mascota!",
+					type: "error",
+				});
 			}
 		} catch (error) {
-      setMessage({
-        text: "Error subiendo la mascota!" + error,
-        type: "error",
-      });
+			setMessage({
+				text: "Error subiendo la mascota!" + error,
+				type: "error",
+			});
 			console.error("Error:", error);
+		} finally {
+			setTimeout(() => {
+				setLoading(false);
+			}, 4000);
 		}
 	};
 
 	return (
 		<div>
 			<h3>Agregar Mascota</h3>
-      {message && <Message text={message.text} type={message.type} />}
+			{message && <Message text={message.text} type={message.type} />}
 
 			<form onSubmit={handleSubmit} className="row dar-adoptar-form mt-4">
 				<div className="col-md-9">
@@ -84,7 +89,7 @@ const DarAdoptar = () => {
 								value={form.name}
 								onChange={handleChange}
 								required
-                maxlength="12" 
+								maxlength="12"
 							/>
 						</div>
 
@@ -170,8 +175,9 @@ const DarAdoptar = () => {
 						<button
 							type="submit"
 							className="btn btn-secondary col-md-12 cargar-mascotas"
+							disabled={loading}
 						>
-							Cargar Mascota
+							{loading ? "Enviando formulario..." : "Cargar Mascota"}
 						</button>
 					</div>
 				</div>
@@ -180,4 +186,4 @@ const DarAdoptar = () => {
 	);
 };
 
-export default DarAdoptar;
+export default AgregarMascota;
