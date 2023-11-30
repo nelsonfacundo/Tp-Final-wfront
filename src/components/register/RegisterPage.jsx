@@ -33,23 +33,19 @@ const RegisterPage = () => {
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
-
-        const contentType = response.headers.get("content-type");
-        if (contentType && contentType.includes("application/json")) {
-          console.log(response.status);
-          return response.json();
-        } else {
-          return response.text();
-        }
+        return response.text();
       })
       .then((data) => {
         setSolicitudEnviada(true);
         setMostrarFormulario(false);
-        console.log(data);
+        console.log(`Repuesta del servidor: ${data}`);
       })
       .catch((error) => {
-        console.error("Error al procesar la solicitud:", error.message);
-        setError(error instanceof Error ? error.message : "Error desconocido");
+        console.error("Error al procesar la solicitud:", error);
+        const errorMessage =
+          error instanceof Error ? error.message : "Error desconocido";
+        console.log(errorMessage);
+        setError(errorMessage);
         setSolicitudEnviada(true);
         setMostrarFormulario(false);
       });
@@ -66,10 +62,10 @@ const RegisterPage = () => {
           success={!error}
           message={
             error
-              ? `Error al procesar la solicitud`
+              ? "Error al procesar la solicitud"
               : "Tu solicitud fue recibida con éxito"
           }
-          onButtonClick={() => navigate(error ? "/register" : "/")}
+          onButtonClick={() => navigate("/")}
         />
       )}
 
