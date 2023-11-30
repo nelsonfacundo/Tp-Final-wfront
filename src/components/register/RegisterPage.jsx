@@ -68,7 +68,9 @@ const RegisterPage = () => {
         <RegisterResult
           success={!error}
           message={
-            error ? error.message : "Tu solicitud fue recibida con éxito"
+            error
+              ? "Error al procesar la solicitud"
+              : "Tu solicitud fue recibida con éxito"
           }
           onButtonClick={() => navigate("/")}
         />
