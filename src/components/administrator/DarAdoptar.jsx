@@ -50,12 +50,19 @@ const DarAdoptar = () => {
 					type: "success",
 				});
 				setTimeout(() => {
-					navigate("/pets");
-				}, 3000);
+          navigate("/pets");
+				}, 4000);
 			} else {
-				console.error("Error subiendo la mascota");
+        setMessage({
+          text: "Error subiendo la mascota!" + response,
+          type: "error",
+        });
 			}
 		} catch (error) {
+      setMessage({
+        text: "Error subiendo la mascota!" + error,
+        type: "error",
+      });
 			console.error("Error:", error);
 		}
 	};
@@ -137,7 +144,7 @@ const DarAdoptar = () => {
 								type="text"
 								id="gender"
 								name="gender"
-								value={form.gender.toString()}
+								value={form.gender}
 								onChange={handleChange}
 								required
 							/>

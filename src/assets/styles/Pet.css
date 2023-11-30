@@ -25,6 +25,10 @@
 }
 
 
+.petCard {
+	width: 30%;
+}
+
 .petCard button{
 	margin-right: 12px;
 }
