@@ -26,11 +26,9 @@ const AgregarMascota = () => {
 		const petId = queryParams.get("id");
 
 		if (petId) {
-			// Fetch pet data based on the provided id
 			fetch(`${Constants.API_BASE_URL}:${Constants.API_PORT}/api/pets/${petId}`)
 				.then((response) => response.json())
 				.then((data) => {
-					// Populate form fields with the fetched data
 					setForm({
 						name: data.name || "",
 						specie: data.specie || "",
@@ -49,7 +47,10 @@ const AgregarMascota = () => {
 		const { name, value } = e.target;
 		setForm({ ...form, [name]: value });
 	};
+	
+	const petId = new URLSearchParams(location.search).get("id");
 
+	let buttonMessage = petId ? "Actualizar" : "Agregar";
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		setLoading(true);
@@ -58,8 +59,8 @@ const AgregarMascota = () => {
 			formData.append(key, value);
 		});
 
+
 		try {
-			const petId = new URLSearchParams(location.search).get("id");
 
 			const response = await fetch(
 				`${Constants.API_BASE_URL}:${Constants.API_PORT}/api/pets/updatePet/${petId}`,
@@ -101,7 +102,8 @@ const AgregarMascota = () => {
 
 	return (
 		<div>
-			<h3>Agregar Mascota</h3>
+			{petId ? <h3>Modificar Mascota</h3> : <h3>Agregar Mascota</h3>}
+
 			{message && <Message text={message.text} type={message.type} />}
 
 			<form onSubmit={handleSubmit} className="row dar-adoptar-form mt-4">
@@ -204,7 +206,7 @@ const AgregarMascota = () => {
 							className="btn btn-secondary col-md-12 cargar-mascotas"
 							disabled={loading}
 						>
-							{loading ? "Enviando formulario..." : "Actualizar Mascota"}
+							{loading ? "Enviando formulario..." : buttonMessage}
 						</button>
 					</div>
 				</div>
