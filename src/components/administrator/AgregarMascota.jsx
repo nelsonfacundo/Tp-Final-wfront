@@ -21,6 +21,8 @@ const AgregarMascota = () => {
 		province: "",
 	});
 
+	const [isUpdating, setIsUpdating] = useState(false);
+
 	useEffect(() => {
 		const queryParams = new URLSearchParams(location.search);
 		const petId = queryParams.get("id");
@@ -40,6 +42,7 @@ const AgregarMascota = () => {
 						description: data.description || "",
 						province: data.province || "",
 					});
+					setIsUpdating(true);
 				})
 				.catch((error) => console.error("Error fetching pet data:", error));
 		}
@@ -74,7 +77,7 @@ const AgregarMascota = () => {
 
 			if (response.ok) {
 				setMessage({
-					text: "Se logró actualizar la información de la mascota!",
+					text: 'Se logró  ${isUpdating ? "actualizar" : "agregar"} la información de la mascota!',
 					type: "success",
 				});
 				setTimeout(() => {
@@ -82,13 +85,13 @@ const AgregarMascota = () => {
 				}, 4000);
 			} else {
 				setMessage({
-					text: "Error actualizando la información de la mascota!",
+					text: 'Error ${isUpdating ? "actualizando" : "agregando"} la información de la mascota!',
 					type: "error",
 				});
 			}
 		} catch (error) {
 			setMessage({
-				text: "Error actualizando la información de la mascota!" + error,
+				text: 'Error ${isUpdating ? "actualizando" : "agregando"} la información de la mascota! ${error}' + error,
 				type: "error",
 			});
 			console.error("Error:", error);
@@ -101,11 +104,11 @@ const AgregarMascota = () => {
 
 	return (
 		<div>
-			<h3>Agregar Mascota</h3>
+			<h3 className="text-center mt-3">{isUpdating ? "Actualizar" : "Agregar"} Mascota</h3>
 			{message && <Message text={message.text} type={message.type} />}
 
 			<form onSubmit={handleSubmit} className="row dar-adoptar-form mt-4">
-				<div className="col-md-9">
+				<div className="offset-md-3 col-md-6">
 					<div className="row">
 						<div className="form-group col-md-8">
 							<label htmlFor="name">Nombre:</label>
@@ -204,7 +207,7 @@ const AgregarMascota = () => {
 							className="btn btn-secondary col-md-12 cargar-mascotas"
 							disabled={loading}
 						>
-							{loading ? "Enviando formulario..." : "Actualizar Mascota"}
+							{loading ? "Enviando formulario..." : isUpdating ? "Actualizar Mascota" : "Agregar Mascota"}
 						</button>
 					</div>
 				</div>

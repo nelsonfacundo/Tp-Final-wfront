@@ -7,7 +7,7 @@ const Footer = () => {
       <div className="container-footer">
         <p>
           SOBRE NOSOTROS TÉRMINOS Y CONDICIONES adoptame © Todos los derechos
-          reservados 2021
+          reservados 2023
         </p>
       </div>
     </footer>
