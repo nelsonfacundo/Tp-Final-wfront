@@ -24,6 +24,10 @@
   }
 }
 
+.container{
+  margin-bottom: 150px;
+}
+
 input {
   color: black;
 } 
