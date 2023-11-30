@@ -23,12 +23,17 @@
     display: flex;
   }
 }
-
-/* Cambiar el color del texto de los input a negro */
-/* input {
+input {
   color: black;
-} */
+} 
 
 .petCard button {
   margin-right: 12px;
+}
+.petCard {
+	width: 30%;
+}
+
+.petCard button{
+	margin-right: 12px;
 }

@@ -2,196 +2,182 @@ import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../../assets/styles/DarAdoptar.css";
 import Constants from "../../lib/Constants.js";
+import Message from "../Navigation/Message";
+import { useNavigate } from "react-router-dom";
 
 const DarAdoptar = () => {
-  const [form, setForm] = useState({
-    name: "",
-    specie: "",
-    race: "",
-    gender: "",
-    age: "",
-    description: "",
-    province: "",
-  });
+	const [message, setMessage] = useState("");
+	const navigate = useNavigate();
 
-  const handleImageUpload = (e) => {
-    const file = e.target.files[0];
-    setForm({ ...form, image: URL.createObjectURL(file) });
-  };
+	const [form, setForm] = useState({
+		name: "",
+		specie: "",
+		race: "",
+		gender: "",
+		age: "",
+		description: "",
+		province: "",
+	});
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setForm({ ...form, [name]: value });
-  };
+	const handleChange = (e) => {
+		const { name, value } = e.target;
+		setForm({ ...form, [name]: value });
+	};
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+	const handleSubmit = async (e) => {
+		e.preventDefault();
 
-    const formData = new FormData();
-    Object.entries(form).forEach(([key, value]) => {
-      formData.append(key, value);
-    });
+		const formData = new FormData();
+		Object.entries(form).forEach(([key, value]) => {
+			formData.append(key, value);
+		});
 
-    try {
-      const response = await fetch(
-        `${Constants.API_BASE_URL}:${Constants.API_PORT}/api/pets/addPet`,
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
+		try {
+			const response = await fetch(
+				`${Constants.API_BASE_URL}:${Constants.API_PORT}/api/pets/addPet`,
+				{
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify(form),
+				}
+			);
 
-      if (response.ok) {
-        console.log("Se logró dar en adopción a la mascota!");
-      } else {
-        console.error("Error subiendo la mascota");
-      }
-    } catch (error) {
-      console.error("Error:", error);
-    }
-  };
+			if (response.ok) {
+				setMessage({
+					text: "Se logró dar en adopción a la mascota!",
+					type: "success",
+				});
+				setTimeout(() => {
+          navigate("/pets");
+				}, 4000);
+			} else {
+        setMessage({
+          text: "Error subiendo la mascota!" + response,
+          type: "error",
+        });
+			}
+		} catch (error) {
+      setMessage({
+        text: "Error subiendo la mascota!" + error,
+        type: "error",
+      });
+			console.error("Error:", error);
+		}
+	};
 
-  return (
-    <div>
-      <h3>Inicio / Poné en Adopción</h3>
-      <form onSubmit={handleSubmit} className="row dar-adoptar-form mt-4">
-        {/* Sección de Subir Foto */}
-        <div className="col-md-3">
-          <div className="row justify-content-center">
-            <div className="form-group preview-container">
-              {form.image ? (
-                <img src={form.image} alt="Preview" className="preview-image" />
-              ) : (
-                <span style={{ color: "white" }}>No hay imagen</span>
-              )}
-            </div>
-          </div>
+	return (
+		<div>
+			<h3>Agregar Mascota</h3>
+      {message && <Message text={message.text} type={message.type} />}
 
-          <div className="form-group row justify-content-center mt-3">
-            <button
-              type="button"
-              className="btn btn-secondary col-md-5"
-              onClick={() => document.getElementById("imageInput").click()}
-            >
-              Subir Foto
-            </button>
-            <input
-              type="file"
-              id="imageInput"
-              className="form-control-file"
-              name="image"
-              onChange={handleImageUpload}
-              accept="image/*"
-              style={{ display: "none" }}
-              required
-            />
-          </div>
-        </div>
+			<form onSubmit={handleSubmit} className="row dar-adoptar-form mt-4">
+				<div className="col-md-9">
+					<div className="row">
+						<div className="form-group col-md-8">
+							<label htmlFor="name">Nombre:</label>
+							<input
+								type="text"
+								id="name"
+								name="name"
+								value={form.name}
+								onChange={handleChange}
+								required
+                maxlength="12" 
+							/>
+						</div>
 
-        <div className="col-md-9">
-          <div className="row">
-            <div className="form-group col-md-8">
-              <label htmlFor="nombre">Nombre:</label>
-              <input
-                type="text"
-                id="nombre"
-                name="nombre"
-                value={form.nombre}
-                onChange={handleChange}
-                required
-              />
-            </div>
+						<div className="form-group col-md-4">
+							<label htmlFor="age">Edad:</label>
+							<input
+								type="number"
+								id="age"
+								name="age"
+								value={parseInt(form.age, 10)}
+								onChange={handleChange}
+								required
+							/>
+						</div>
+					</div>
 
-            <div className="form-group col-md-4">
-              <label htmlFor="edad">Edad:</label>
-              <input
-                type="text"
-                id="edad"
-                name="edad"
-                value={form.edad}
-                onChange={handleChange}
-                required
-              />
-            </div>
-          </div>
+					<div className="form-group col-md-12">
+						<label htmlFor="description">Descripción:</label>
+						<textarea
+							id="description"
+							name="description"
+							value={form.description}
+							onChange={handleChange}
+							required
+							rows="5"
+						/>
+					</div>
 
-          <div className="form-group col-md-12">
-            <label htmlFor="descripcion">Descripción:</label>
-            <textarea
-              id="descripcion"
-              name="descripcion"
-              value={form.descripcion}
-              onChange={handleChange}
-              required
-              rows="5"
-            />
-          </div>
+					<div className="row">
+						<div className="form-group col-md-4">
+							<label htmlFor="race">Raza:</label>
+							<input
+								type="text"
+								id="race"
+								name="race"
+								value={form.race}
+								onChange={handleChange}
+								required
+							/>
+						</div>
 
-          <div className="row">
-            <div className="form-group col-md-4">
-              <label htmlFor="raza">Raza:</label>
-              <input
-                type="text"
-                id="raza"
-                name="raza"
-                value={form.raza}
-                onChange={handleChange}
-                required
-              />
-            </div>
+						<div className="form-group col-md-4">
+							<label htmlFor="specie">Especie:</label>
+							<input
+								type="text"
+								id="specie"
+								name="specie"
+								value={form.specie}
+								onChange={handleChange}
+								required
+							/>
+						</div>
 
-            <div className="form-group col-md-4">
-              <label htmlFor="especie">Especie:</label>
-              <input
-                type="text"
-                id="especie"
-                name="especie"
-                value={form.especie}
-                onChange={handleChange}
-                required
-              />
-            </div>
+						<div className="form-group col-md-4">
+							<label htmlFor="gender">Género:</label>
+							<input
+								type="text"
+								id="gender"
+								name="gender"
+								value={form.gender}
+								onChange={handleChange}
+								required
+							/>
+						</div>
+					</div>
 
-            <div className="form-group col-md-4">
-              <label htmlFor="genero">Género:</label>
-              <input
-                type="text"
-                id="genero"
-                name="genero"
-                value={form.genero}
-                onChange={handleChange}
-                required
-              />
-            </div>
-          </div>
+					<div className="row">
+						<div className="form-group col-md-4">
+							<label htmlFor="province">Provincia:</label>
+							<input
+								type="text"
+								id="province"
+								name="province"
+								value={form.province}
+								onChange={handleChange}
+								required
+							/>
+						</div>
+					</div>
 
-          <div className="row">
-            <div className="form-group col-md-4">
-              <label htmlFor="provincia">Provincia:</label>
-              <input
-                type="text"
-                id="provincia"
-                name="provincia"
-                value={form.provincia}
-                onChange={handleChange}
-                required
-              />
-            </div>
-          </div>
-
-          {/* Fin Formulario*/}
-          <div className="form-group col-md-12">
-            <button
-              type="submit"
-              className="btn btn-secondary col-md-12 cargar-mascotas"
-            >
-              Cargar Mascota
-            </button>
-          </div>
-        </div>
-      </form>
-    </div>
-  );
+					{/* Fin Formulario*/}
+					<div className="form-group col-md-12">
+						<button
+							type="submit"
+							className="btn btn-secondary col-md-12 cargar-mascotas"
+						>
+							Cargar Mascota
+						</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	);
 };
 
 export default DarAdoptar;

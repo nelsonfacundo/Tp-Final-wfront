@@ -4,13 +4,15 @@ import Footer from "../Navigation/Footer.jsx";
 import DarAdoptar from "./DarAdoptar.jsx";
 
 const Administrator = () => {
-    return(
-    <div className="main">
-     <Navbar />
-      <DarAdoptar />
-      <Footer />
-    </div>
-    );
+	return (
+		<div className="main">
+			<Navbar />
+			<section className="container">
+				<DarAdoptar />
+				<Footer />
+			</section>
+		</div>
+	);
 };
 
 export default Administrator;
