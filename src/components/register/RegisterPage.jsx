@@ -27,25 +27,18 @@ const RegisterPage = () => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(registro),
     };
-
+    //HASTA ACÁ LOS CAMBIOS
     fetch("http://localhost:8000/api/users/register", requestOptions)
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
-
-        const contentType = response.headers.get("content-type");
-        if (contentType && contentType.includes("application/json")) {
-          console.log(response.status);
-          return response.json();
-        } else {
-          return response.text();
-        }
+        return response.text();
       })
       .then((data) => {
         setSolicitudEnviada(true);
         setMostrarFormulario(false);
-        console.log(data);
+        console.log(`Repuesta del servidor: ${data}`);
       })
       .catch((error) => {
         console.error("Error al procesar la solicitud:", error);

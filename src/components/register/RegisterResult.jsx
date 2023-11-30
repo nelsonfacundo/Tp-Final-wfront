@@ -13,7 +13,7 @@ const RegisterResult = ({ success, message, onButtonClick }) => {
       />
 
       <button className="home-button" onClick={onButtonClick}>
-        {!success ? "Volver al inicio" : "Volver al inicio"}
+        {"Volver al inicio"}
       </button>
     </div>
   );
